@@ -62,6 +62,9 @@ commandFiles.forEach((file) => {
 
 client.once('ready', () => {
 	console.log('Ready!')
+	if (!fs.existsSync("./data")){
+		fs.mkdirSync("./data");
+	}
 	fs.writeFileSync('./data/links.json', JSON.stringify(defaultLinks))
 	fs.writeFileSync('./data/sent.json', JSON.stringify([]))
 })
