@@ -1,11 +1,15 @@
 const fs = require('fs')
 
-const youtube = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
+const youtube = /^http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 
 
 const addSong = (msg, args) => {
 	console.log(args)
 	try{
+		if (!(args[0].match(youtube))){
+			msg.reply("Don't be a stinky cat")
+			return
+		}
 		const {links} = JSON.parse(fs.readFileSync('./data/links.json'))
 		link = {
 			"link": args[0],
