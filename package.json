@@ -1,6 +1,6 @@
 {
   "name": "alienplsbot",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Discord bot to post links that please the alien",
   "main": "src/index.js",
   "scripts": {
