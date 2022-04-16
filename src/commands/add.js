@@ -1,5 +1,4 @@
 const fs = require('fs')
-const {Formatters} = require("discord.js")
 
 const youtube = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/
 

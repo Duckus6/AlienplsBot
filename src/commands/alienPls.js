@@ -19,8 +19,16 @@ const notPlayed = (link, sent) => {
 	return {sent, played:true}
 }
 
+
+const checkSent = (sent) => {
+	const time = Date.now() - 3600000
+	const index = sent.findIndex(ele => ele[1] > time)
+	sent.splice(0,index)
+	return sent
+}
+
+
 const pleaseAlien = (links, sentO, args) => {
-	
 	if (links.length === 0) {
 		return {reply:{content:"Links exhausted"}, sent: sentO}
 	}
@@ -45,6 +53,7 @@ const pleaseAlien = (links, sentO, args) => {
 const alienPls = (msg, args) => {
 	const {links} = JSON.parse(fs.readFileSync('./data/links.json'))
 	const sentO = JSON.parse(fs.readFileSync('./data/sent.json'))
+	sentO = checkSent(sentO)
 	const resp = pleaseAlien(links, sentO, args)
 	console.log(resp)
 	updateSent(resp.sent)

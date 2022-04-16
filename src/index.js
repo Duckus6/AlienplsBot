@@ -65,7 +65,9 @@ client.once('ready', () => {
 	if (!fs.existsSync("./data")){
 		fs.mkdirSync("./data");
 	}
-	fs.writeFileSync('./data/links.json', JSON.stringify(defaultLinks))
+	if (!fs.existsSync("./data/links.json")) {
+		fs.writeFileSync('./data/links.json', JSON.stringify(defaultLinks))
+	}
 	fs.writeFileSync('./data/sent.json', JSON.stringify([]))
 })
 
