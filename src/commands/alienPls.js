@@ -29,6 +29,7 @@ const checkSent = (sent) => {
 
 
 const pleaseAlien = (links, sentO, args) => {
+	const {spoiler} = JSON.parse(fs.readFileSync('./config.json'))
 	if (links.length === 0) {
 		return {reply:{content:"Links exhausted"}, sent: sentO}
 	}
@@ -36,7 +37,7 @@ const pleaseAlien = (links, sentO, args) => {
 	const item = links[rand]
 	const {played,sent} = notPlayed(item.link, sentO)
 	if (!played) {
-		notSpoiler = args[0] =="*" || item.tags.every(i => {
+		notSpoiler = (spoiler || args[0] =="*") || item.tags.every(i => {
 			return args.includes(i)
 		})
 		const text = (notSpoiler)? item.link: Formatters.spoiler(item.link) 
